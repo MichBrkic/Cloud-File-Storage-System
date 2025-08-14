@@ -1,4 +1,3 @@
-//Get Task Function (Read): 
 const Task = require('../models/Task');  
 const getTasks = async (req, res) => {  
 try {  
@@ -6,10 +5,9 @@ const tasks = await Task.find({ userId: req.user.id });
 res.json(tasks);  
 } catch (error) {  
 res.status(500).json({ message: error.message });  
-}  
+} 
 };
 
-//Add Task Function: 
 const addTask = async (req, res) => { 
 const { title, description, deadline } = req.body; 
 try { 
@@ -18,9 +16,8 @@ res.status(201).json(task);
 } catch (error) { 
 res.status(500).json({ message: error.message }); 
 } 
-};
+}; 
 
-//Update Task:
 const updateTask = async (req, res) => { 
 const { title, description, completed, deadline } = req.body; 
 try { 
@@ -39,7 +36,6 @@ res.status(500).json({ message: error.message });
 } 
 };
 
-//Delete Task: 
 const deleteTask = async (req, res) => { 
 try { 
 const task = await Task.findById(req.params.id); 
@@ -50,4 +46,5 @@ res.json({ message: 'Task deleted' });
 res.status(500).json({ message: error.message }); 
 }
  }; 
+ 
 module.exports = { getTasks, addTask, updateTask, deleteTask };
